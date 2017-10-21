@@ -47,6 +47,11 @@ public class EnemyAI : MonoBehaviour
 
         //Move the enemy
         Accelerate();
+
+        if (Vector3.Distance(player.transform.position, transform.position) > 300)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Rotate()
