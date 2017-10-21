@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : MonoBehaviour {
+public class Shooting : MonoBehaviour {
+
+    public GameObject bullet;
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +13,6 @@ public class Cube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(1f * Time.deltaTime, 0f, 0f);
+		
 	}
 }
