@@ -33,7 +33,11 @@ public class TileGeneration : MonoBehaviour
         //If the grid moved create new tiles
         if (newTiles)
         {
+            transform.GetChild(0).GetComponent<PerlinNoise>().position = new Vector2(tilePos.y, tilePos.x) * (waterTile.GetComponent<Renderer>().bounds.size.x * .85f);
+            transform.GetChild(0).GetComponent<PerlinNoise>().CalculatePerlin();
+
             CreateTiles();
+            transform.position = new Vector3(tilePos.x, 0, tilePos.y) * waterTile.GetComponent<Renderer>().bounds.size.x;
         }
 
         //Constantly delete tiles that aren't needed
@@ -49,20 +53,20 @@ public class TileGeneration : MonoBehaviour
 
         //Test if the player enters the area of a new tile
         //Change the center location for the tile grid
-        if (player.transform.position.x - tileSize.x * tilePos.x >= tileSize.x * tilePos.x + tileSize.x)
+        if (player.transform.position.x - tileSize.x * tilePos.x > tileSize.x * tilePos.x + tileSize.x)
         {
             tilePos += new Vector2(1, 0);
         }
-        else if (player.transform.position.x - tileSize.x * tilePos.x <= tileSize.x * tilePos.x - tileSize.x)
+        else if (player.transform.position.x - tileSize.x * tilePos.x < tileSize.x * tilePos.x - tileSize.x)
         {
             tilePos -= new Vector2(1, 0);
         }
 
-        if (player.transform.position.z - tileSize.z * tilePos.y >= tileSize.z * tilePos.y + tileSize.z)
+        if (player.transform.position.z - tileSize.z * tilePos.y > tileSize.z * tilePos.y + tileSize.z)
         {
             tilePos += new Vector2(0, 1);
         }
-        else if (player.transform.position.z - tileSize.z * tilePos.y <= tileSize.z * tilePos.y - tileSize.z)
+        else if (player.transform.position.z - tileSize.z * tilePos.y < tileSize.z * tilePos.y - tileSize.z)
         {
             tilePos -= new Vector2(0, 1);
         }

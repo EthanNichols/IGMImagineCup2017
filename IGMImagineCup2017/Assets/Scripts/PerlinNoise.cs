@@ -14,7 +14,6 @@ public class PerlinNoise : MonoBehaviour {
 
     //The step size for the perlin noise
     public float stepSize;
-    public float heightForIsland = .9f;
 
     //The current position, and the previous position
     public Vector2 position;
@@ -38,7 +37,7 @@ public class PerlinNoise : MonoBehaviour {
         }
 
         //Get a random starting position for the map position
-        position = StartingPosition();
+        //position = StartingPosition();
 
         //Calculate the perlin noise for the terrain
         CalculatePerlin();
@@ -46,16 +45,6 @@ public class PerlinNoise : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        //If the player  moved calculate the new terrain to display
-        if (position != oldPosition)
-        {
-            CalculatePerlin();
-        }
-
-        //Set the previous position to the current position
-        oldPosition = position;
-        position += new Vector2(1, 1);
     }
 
     private Vector2 StartingPosition()
@@ -64,7 +53,7 @@ public class PerlinNoise : MonoBehaviour {
         return new Vector2(Random.Range(-100, 100), Random.Range(-100, 100));
     }
 
-    private void CalculatePerlin()
+    public void CalculatePerlin()
     {
         //Array of heights for the terrain
         float[,] heights = new float[terrainResolution, terrainResolution];
@@ -77,10 +66,12 @@ public class PerlinNoise : MonoBehaviour {
                 //Set the height of the terrain
                 heights[x, y] = Mathf.PerlinNoise((position.x + x) * stepSize, (position.y + y) * stepSize);
 
-                if (heights[x, y] <= heightForIsland)
+                /*
+                if (heights[x, y] < (Mathf.Abs(transform.position.y) /  terrainSize.y) * (terrainSize.y - 1))
                 {
-                    heights[x, y] -= (1 - heightForIsland);
+                    heights[x, y] -= (Mathf.Abs(transform.position.y) / terrainSize.y);
                 }
+                */
             }
         }
         terrain.terrainData.SetHeights(0, 0, heights);

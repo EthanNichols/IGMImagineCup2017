@@ -26,15 +26,5 @@ public class Port : MonoBehaviour {
 
     public void TestPort()
     {
-        float islandHeight = terrain.gameObject.GetComponent<PerlinNoise>().heightForIsland;
-        if (terrain.SampleHeight(transform.position) > islandHeight &&
-            canPort)
-        {
-            ported = true;
-            canPort = false;
-        } else
-        {
-            canPort = true;
-        }
     }
 }
