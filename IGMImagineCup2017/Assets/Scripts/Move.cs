@@ -12,8 +12,16 @@ public class Move : MonoBehaviour {
     public float rotationSpeed;
     private float rotation;
 
+    public float rammingCoolDown;
+    public float ramTime;
+    private float ramTimeReset;
+    private float resetCoolDown;
+    public bool Ramming;
+
 	// Use this for initialization
 	void Start () {
+        resetCoolDown = rammingCoolDown;
+        ramTimeReset = ramTime;
 	}
 	
 	// Update is called once per frame
@@ -36,6 +44,26 @@ public class Move : MonoBehaviour {
         else if (Input.GetKey(KeyCode.D))
         {
             Rotate(1);
+        }
+
+        if (Input.GetKey(KeyCode.E) &&
+            rammingCoolDown < 0)
+        {
+            Ramming = true;
+            rammingCoolDown = resetCoolDown;
+            ramTime = ramTimeReset;
+            StartRamming();
+        }
+
+        if (ramTime > 0)
+        {
+            Ramming = true;
+            StartRamming();
+            ramTime -= Time.deltaTime;
+        } else
+        {
+            Ramming = false;
+            rammingCoolDown -= Time.deltaTime;
         }
     }
 
@@ -63,6 +91,11 @@ public class Move : MonoBehaviour {
 
         //Set the velocity to 0 if it is significantly small
         if (GetComponent<Rigidbody>().velocity.magnitude < .2f) { GetComponent<Rigidbody>().velocity = Vector3.zero; }
+    }
+
+    private void StartRamming()
+    {
+        GetComponent<Rigidbody>().velocity = transform.forward * (speed * 5f);
     }
 
     private void OnCollisionEnter(Collision col)
