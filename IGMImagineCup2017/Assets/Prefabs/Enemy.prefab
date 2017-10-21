@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23352527446565048}
   - component: {fileID: 54179854093442154}
   - component: {fileID: 114231590899439778}
+  - component: {fileID: 114524870145412702}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -128,3 +129,20 @@ MonoBehaviour:
   viewDistance: 30
   proximityDistance: 5
   rotationSpeed: 2
+--- !u!114 &114524870145412702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1597420126516832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb820ebb3d8e78645945116829707bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1785367263663570, guid: fd476f5a93e6c57408acbbf7d991feec, type: 2}
+  shootingRadius: 5
+  shootingAngle: 30
+  hitChance: 0.4
+  bulletCount: 1
+  shootingDelay: 2

@@ -64,4 +64,9 @@ public class Move : MonoBehaviour {
         //Set the velocity to 0 if it is significantly small
         if (GetComponent<Rigidbody>().velocity.magnitude < .2f) { GetComponent<Rigidbody>().velocity = Vector3.zero; }
     }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        Destroy(col.gameObject);
+    }
 }
