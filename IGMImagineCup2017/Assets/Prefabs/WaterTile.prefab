@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33430898469632788}
   - component: {fileID: 23767772196385846}
   - component: {fileID: 114441276722140396}
+  - component: {fileID: 114181361658158380}
   m_Layer: 4
   m_Name: WaterTile
   m_TagString: Untagged
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682191299140760}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114181361658158380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1682191299140760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a8ab8c0e9278241bd0736eb905d752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPos: {x: 0, y: 0}
 --- !u!114 &114441276722140396
 MonoBehaviour:
   m_ObjectHideFlags: 1
