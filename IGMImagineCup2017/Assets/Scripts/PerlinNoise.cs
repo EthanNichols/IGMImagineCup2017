@@ -55,6 +55,7 @@ public class PerlinNoise : MonoBehaviour {
 
         //Set the previous position to the current position
         oldPosition = position;
+        position += new Vector2(1, 1);
     }
 
     private Vector2 StartingPosition()
