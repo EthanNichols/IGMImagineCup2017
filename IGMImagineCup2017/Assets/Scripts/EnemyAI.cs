@@ -20,12 +20,14 @@ public class EnemyAI : MonoBehaviour
     private Vector3 rotateDirection;
 
     private GameObject player;
+    private Terrain terrain;
 
     // Use this for initialization
     void Start()
     {
         //Set the player
         player = GameObject.FindGameObjectWithTag("Player");
+        terrain = GameObject.FindGameObjectWithTag("Terrain").GetComponent<Terrain>();
     }
 
     // Update is called once per frame
@@ -34,32 +36,17 @@ public class EnemyAI : MonoBehaviour
         //Get the distance from the enemy to the player
         float playerDistance = Vector3.Distance(player.transform.position, transform.position);
 
-        //If the enemy can see the player
-        if (playerDistance < viewDistance)
+        if (terrain.SampleHeight(transform.position) > .4f)
         {
-
-            //Check if the player is far from the player, rotate to face towards the player
-            if (playerDistance > proximityDistance)
-            {
-                Rotate();
-
-                rotateDirection = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-            }
-
-            //If the enemy is too close to the enemy move change its course
-            else
-            {
-                RandomRotate();
-            }
-
-            //Move the enemy
-            Accelerate();
+            RandomRotate();
         }
         else
         {
-            //Slow the enemy down
-            Decellerate();
+            Rotate();
         }
+
+        //Move the enemy
+        Accelerate();
     }
 
     private void Rotate()
@@ -83,7 +70,7 @@ public class EnemyAI : MonoBehaviour
         rotation += step;
 
         //Rotate the ship to avoid colliding with the player
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, transform.position + rotateDirection, step, 0.0F);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, -transform.forward + rotateDirection, step, 0.0F);
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
@@ -107,6 +94,9 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        Destroy(col.gameObject);
+        if (col.gameObject.tag == "Bullet")
+        {
+            Destroy(col.gameObject);
+        }
     }
 }

@@ -67,7 +67,9 @@ public class Move : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        UIElements.playerHealth -= 10;
-        Destroy(col.gameObject);
+        if (col.gameObject.tag == "Bullet")
+        {
+            Destroy(col.gameObject);
+        }
     }
 }
