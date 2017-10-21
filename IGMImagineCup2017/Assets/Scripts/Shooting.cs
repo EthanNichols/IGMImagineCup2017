@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour {
+public class Shooting : MonoBehaviour
+{
 
     //The bullet prefab
     public GameObject bullet;
@@ -21,19 +22,25 @@ public class Shooting : MonoBehaviour {
     //The reset for the shooting delay
     public float shootingDelay;
     private float shootingReset;
+    private int bulletsShot;
 
     //List of targets that can be shot at
     private List<GameObject> targets = new List<GameObject>();
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         shootingReset = shootingDelay;
+        hitChance = 1;
 
         AddTargets();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+        bulletsShot = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         //Reduce the amount of time tile the next bullet
         if (shootingDelay > 0) { shootingDelay -= Time.deltaTime; }
@@ -49,13 +56,21 @@ public class Shooting : MonoBehaviour {
                 {
                     //Shoot at the target
                     //Reset the shooting delay
-                    Shoot(target);
-                    shootingDelay = shootingReset;
+                    if (++bulletsShot >= bulletCount)
+                    {
+                        Shoot(target);
+                        shootingDelay = shootingReset;
+                        bulletsShot = 0;
+                    } else
+                    {
+                        shootingDelay += Time.deltaTime * 2;
+                        Shoot(target);
+                    }
                     break;
                 }
             }
         }
-	}
+    }
 
     public void AddTargets()
     {
@@ -70,31 +85,34 @@ public class Shooting : MonoBehaviour {
                 targets.Add(enemy);
             }
 
-        //Set the enemy ship target to the player
-        } else
+            //Set the enemy ship target to the player
+        }
+        else
         {
             targets.Add(GameObject.FindGameObjectWithTag("Player"));
         }
     }
-    
+
     private void Shoot(GameObject target)
     {
         //Random starting seed
         Random.InitState((int)System.DateTime.Now.Ticks);
 
         //Fire the amount of bullets the ship can shoot at once
-        for (int i=0; i<bulletCount; i++)
+        for (int i = 0; i < bulletCount; i++)
         {
             //Create a new bullet, make sure it doesn't initially collide with the shooter
             GameObject firedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             Vector3 direction = (target.transform.position - transform.position).normalized;
-            firedBullet.transform.position += direction * (GetComponent<Renderer>().bounds.extents.x * 1.2f);
+            firedBullet.transform.position += direction * (GetComponent<Renderer>().bounds.extents.x * 1.5f);
 
             //Determine if it will hit the target or not
             if (Random.Range(0f, 1f) < hitChance)
             {
                 firedBullet.GetComponent<Bullet>().hitTarget = true;
             }
+
+            firedBullet.GetComponent<Bullet>().startingVelocity = gameObject.GetComponent<Rigidbody>().velocity.normalized;
 
             //Set the bullet's target and the direction it is going in
             firedBullet.GetComponent<Bullet>().target = target;

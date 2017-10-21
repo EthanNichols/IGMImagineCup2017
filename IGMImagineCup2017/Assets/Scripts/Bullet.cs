@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour {
     //The initial direction of the bullet
     public Vector3 direction;
 
+    public Vector3 startingVelocity;
+
 	// Use this for initialization
 	void Start () {
         //Move the bullet above the ship
@@ -42,7 +44,7 @@ public class Bullet : MonoBehaviour {
         //If the bullet won't hit the target, just move the bullet in the right direction
         else
         {
-            transform.position += direction.normalized * speed * Time.deltaTime;
+            transform.position += (startingVelocity + direction.normalized).normalized * speed * Time.deltaTime;
             transform.position -= new Vector3(0, .01f, 0);
         }
     }

@@ -67,6 +67,9 @@ public class Move : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
-        Destroy(col.gameObject);
+        if (col.gameObject.tag == "Bullet")
+        {
+            Destroy(col.gameObject);
+        }
     }
 }

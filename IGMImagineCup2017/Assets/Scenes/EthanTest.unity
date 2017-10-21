@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 457278458}
   - component: {fileID: 457278462}
   - component: {fileID: 457278463}
+  - component: {fileID: 457278464}
   m_Layer: 0
   m_Name: Boat
   m_TagString: Player
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e552b4e70ec7e6e46b9b1a3911bc1dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   maxSpeed: 3
   rotationSpeed: 2
 --- !u!54 &457278463
@@ -228,6 +229,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &457278464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 457278457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb820ebb3d8e78645945116829707bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1785367263663570, guid: fd476f5a93e6c57408acbbf7d991feec, type: 2}
+  shootingRadius: 6
+  shootingAngle: 30
+  hitChance: 0.1
+  bulletCount: 2
+  shootingDelay: 2
 --- !u!1 &771721897
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,46 +289,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePos: {x: 0, y: 0}
   waterTile: {fileID: 1516835397946118, guid: d8a5332427363a6468256dcb221887cc, type: 2}
---- !u!1 &791111148
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 791111149}
-  m_Layer: 0
-  m_Name: EnemyManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &791111149
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 791111148}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 823212776}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &823212776 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4191939401100858, guid: 7987c68cf84fb4a4bb4b00a3438b179e,
-    type: 2}
-  m_PrefabInternal: {fileID: 823228746}
 --- !u!1001 &823228746
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 791111149}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4191939401100858, guid: 7987c68cf84fb4a4bb4b00a3438b179e, type: 2}
       propertyPath: m_LocalPosition.x
@@ -342,7 +326,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4191939401100858, guid: 7987c68cf84fb4a4bb4b00a3438b179e, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114524870145412702, guid: 7987c68cf84fb4a4bb4b00a3438b179e,
+        type: 2}
+      propertyPath: hitChance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114231590899439778, guid: 7987c68cf84fb4a4bb4b00a3438b179e,
+        type: 2}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114524870145412702, guid: 7987c68cf84fb4a4bb4b00a3438b179e,
+        type: 2}
+      propertyPath: shootingDelay
+      value: 2.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7987c68cf84fb4a4bb4b00a3438b179e, type: 2}
