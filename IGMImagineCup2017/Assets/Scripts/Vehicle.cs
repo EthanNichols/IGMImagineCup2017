@@ -72,7 +72,7 @@ public class Vehicle : MonoBehaviour
 
 		// Step 3A
 		// Rotate the prefab to turn in the direction
-		transform.rotation = Quaternion.Euler(0, 0, totalRotation);
+
       
         if (Input.GetKey(KeyCode.UpArrow))
         {
