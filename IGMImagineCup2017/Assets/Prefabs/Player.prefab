@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 33601497954200192}
   - component: {fileID: 23814089012507872}
   - component: {fileID: 54227169650049660}
-  - component: {fileID: 114951488954638154}
   - component: {fileID: 114505012782061160}
   - component: {fileID: 65335002031953944}
   m_Layer: 0
@@ -201,26 +200,9 @@ MonoBehaviour:
   speed: 25
   maxSpeed: 25
   rotationSpeed: 2
-  rammingCoolDown: 5
+  rammingCoolDown: 0
   ramTime: 0.5
   Ramming: 0
---- !u!114 &114951488954638154
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1848941460414754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb820ebb3d8e78645945116829707bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 1785367263663570, guid: fd476f5a93e6c57408acbbf7d991feec, type: 2}
-  shootingRadius: 6
-  shootingAngle: 30
-  hitChance: 0.1
-  bulletCount: 2
-  shootingDelay: 2
 --- !u!124 &124715077301849138
 Behaviour:
   m_ObjectHideFlags: 1

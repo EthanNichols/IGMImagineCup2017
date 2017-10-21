@@ -116,4 +116,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a8ab8c0e9278241bd0736eb905d752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 1988137289434894, guid: 7987c68cf84fb4a4bb4b00a3438b179e, type: 2}
   gridPos: {x: 0, y: 0}
