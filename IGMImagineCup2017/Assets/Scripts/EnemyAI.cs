@@ -98,5 +98,13 @@ public class EnemyAI : MonoBehaviour
         {
             Destroy(col.gameObject);
         }
+
+        if (col.gameObject.tag == "Player")
+        {
+            if (col.gameObject.GetComponent<Move>().Ramming)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

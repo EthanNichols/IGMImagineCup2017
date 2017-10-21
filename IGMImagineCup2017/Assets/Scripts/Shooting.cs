@@ -41,6 +41,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AddTargets();
 
         //Reduce the amount of time tile the next bullet
         if (shootingDelay > 0) { shootingDelay -= Time.deltaTime; }
