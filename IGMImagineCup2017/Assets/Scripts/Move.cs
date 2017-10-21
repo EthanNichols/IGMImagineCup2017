@@ -22,6 +22,7 @@ public class Move : MonoBehaviour {
 	void Start () {
         resetCoolDown = rammingCoolDown;
         ramTimeReset = ramTime;
+        ramTime = 0;
 	}
 	
 	// Update is called once per frame
