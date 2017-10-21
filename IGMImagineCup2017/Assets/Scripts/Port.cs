@@ -11,8 +11,8 @@ public class Port : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ported = true;
-        canPort = false;
+        canPort = true;
+        ported = false;
 
         terrain = GameObject.FindGameObjectWithTag("Terrain").GetComponent<Terrain>();
 	}
@@ -26,8 +26,9 @@ public class Port : MonoBehaviour {
 
     public void TestPort()
     {
-        float islandHeight = 1 - terrain.gameObject.GetComponent<PerlinNoise>().heightForIsland;
-        if (terrain.SampleHeight(transform.position) > 1 - (islandHeight * 1.5))
+        float islandHeight = terrain.gameObject.GetComponent<PerlinNoise>().heightForIsland;
+        if (terrain.SampleHeight(transform.position) > islandHeight &&
+            canPort)
         {
             ported = true;
             canPort = false;
