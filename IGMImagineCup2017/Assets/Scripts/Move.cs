@@ -31,11 +31,11 @@ public class Move : MonoBehaviour {
         //Rotate the boat based on the key input
         if (Input.GetKey(KeyCode.A))
         {
-            Rotate(1);
+            Rotate(-1);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            Rotate(-1);
+            Rotate(1);
         }
     }
 
@@ -59,9 +59,14 @@ public class Move : MonoBehaviour {
     private void Decellerate()
     {
         //Slow the boat down relative to the velocity
-        GetComponent<Rigidbody>().velocity *= .99f;
+        GetComponent<Rigidbody>().velocity *= .97f;
 
         //Set the velocity to 0 if it is significantly small
         if (GetComponent<Rigidbody>().velocity.magnitude < .2f) { GetComponent<Rigidbody>().velocity = Vector3.zero; }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        Destroy(col.gameObject);
     }
 }
