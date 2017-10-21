@@ -23,7 +23,7 @@ public class CannonBehavior : MonoBehaviour {
     {
         float h = horizontalSpeed * Input.GetAxis("Mouse X");
         float v = verticalSpeed * Input.GetAxis("Mouse Y");
-        m_cannonRot.transform.Rotate(v, h, 0);
+        m_cannonRot.transform.Rotate(0, h, 0);
         /*
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
@@ -34,7 +34,7 @@ public class CannonBehavior : MonoBehaviour {
 			m_cannonRot.transform.Rotate(Vector3.up, Time.deltaTime * 100f);
 		}
         */
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             GameObject go = GameObject.Instantiate(m_shotPrefab, m_muzzle.position, m_muzzle.rotation) as GameObject;
             GameObject.Destroy(go, 3f);

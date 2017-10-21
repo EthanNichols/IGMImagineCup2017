@@ -97,6 +97,7 @@ public class EnemyAI : MonoBehaviour
         if (col.gameObject.tag == "Bullet")
         {
             Destroy(col.gameObject);
+            Destroy(gameObject);
         }
 
         if (col.gameObject.tag == "Player")
