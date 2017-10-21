@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class UIElements : MonoBehaviour {
 
-    public float playerHealth;
+    public static float playerHealth;
     public float playerMaxHealth = 100;
-    public float playerMoney;
+    public static float playerMoney;
     public Image playerHealthImage;
     public Text playerHealthText;
     public Text playerMoneyText;
 
 	// Use this for initialization
 	void Start () {
-		
+        playerHealth = 100;
 	}
 	
 	// Update is called once per frame

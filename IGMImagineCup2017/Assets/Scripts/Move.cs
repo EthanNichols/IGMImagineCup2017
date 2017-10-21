@@ -67,6 +67,7 @@ public class Move : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
+        UIElements.playerHealth -= 10;
         Destroy(col.gameObject);
     }
 }
