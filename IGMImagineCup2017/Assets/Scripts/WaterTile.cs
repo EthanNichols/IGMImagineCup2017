@@ -14,7 +14,7 @@ public class WaterTile : MonoBehaviour {
 	void Start () {
         Random.InitState((int)System.DateTime.Now.Ticks);
 
-        SpawnShips(Random.Range(1, 5));
+        //SpawnShips(Random.Range(1, 5));
 
         spawnTimer = Random.Range(3, 15);
         timerReset = spawnTimer;
@@ -26,7 +26,7 @@ public class WaterTile : MonoBehaviour {
 
         if (spawnTimer < 0)
         {
-            SpawnShips(Random.Range(1, 5));
+            //SpawnShips(Random.Range(1, 5));
             spawnTimer = timerReset;
         }
 	}
