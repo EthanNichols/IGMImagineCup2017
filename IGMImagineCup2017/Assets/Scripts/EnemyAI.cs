@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public GameObject Explosion;
 
     //The speed and max speed of the boat
     public float speed;
@@ -117,6 +118,7 @@ public class EnemyAI : MonoBehaviour
         {
             Destroy(col.gameObject);
             Destroy(gameObject);
+            Instantiate(Explosion, gameObject.transform.position, gameObject.transform.rotation);
             canvas.GetComponent<UIManager>().AddScore(10);
         }
 
