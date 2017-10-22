@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour
 
     private GameObject player;
     private Terrain terrain;
+    private GameObject canvas;
 
     // Use this for initialization
     void Start()
@@ -28,6 +29,7 @@ public class EnemyAI : MonoBehaviour
         //Set the player
         player = GameObject.FindGameObjectWithTag("Player");
         terrain = GameObject.FindGameObjectWithTag("Terrain").GetComponent<Terrain>();
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
     // Update is called once per frame
@@ -103,6 +105,7 @@ public class EnemyAI : MonoBehaviour
         {
             Destroy(col.gameObject);
             Destroy(gameObject);
+            canvas.GetComponent<UIManager>().score += 10;
         }
 
         if (col.gameObject.tag == "Player")
@@ -110,7 +113,13 @@ public class EnemyAI : MonoBehaviour
             if (col.gameObject.GetComponent<Move>().Ramming)
             {
                 Destroy(gameObject);
+                canvas.GetComponent<UIManager>().score += 20;
             }
         }
+    }
+
+    private void OnMouseDown()
+    {
+        player.GetComponent<CannonBehavior>().setTarget = gameObject;
     }
 }

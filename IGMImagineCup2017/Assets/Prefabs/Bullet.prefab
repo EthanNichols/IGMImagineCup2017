@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 135652558999431430}
   - component: {fileID: 23486275223863604}
   - component: {fileID: 114923798802557026}
+  - component: {fileID: 65229750205207860}
+  - component: {fileID: 54099986960036986}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -84,6 +86,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1785367263663570}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54099986960036986
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785367263663570}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!65 &65229750205207860
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785367263663570}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114923798802557026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,9 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  target: {fileID: 0}
-  hitTarget: 0
   direction: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
   startingVelocity: {x: 0, y: 0, z: 0}
 --- !u!135 &135652558999431430
 SphereCollider:

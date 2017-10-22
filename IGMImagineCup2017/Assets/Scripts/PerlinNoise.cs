@@ -66,7 +66,7 @@ public class PerlinNoise : MonoBehaviour {
                 //Set the height of the terrain
                 heights[x, y] = Mathf.PerlinNoise((position.x + x) * stepSize, (position.y + y) * stepSize);
 
-                if (heights[x, y] > (Mathf.Abs(transform.position.y) / terrainSize.y) - .05f &&
+                if (heights[x, y] > (Mathf.Abs(transform.position.y) / terrainSize.y) - .15f &&
                     heights[x, y] < (Mathf.Abs(transform.position.y) / terrainSize.y))
                 {
                     heights[x, y] = .5f;
