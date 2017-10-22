@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Bullet
   - Canvas
+  - Fire
+  - FinalScore
   layers:
   - Default
   - TransparentFX

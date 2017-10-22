@@ -162,9 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  target: {fileID: 0}
-  hitTarget: 0
   direction: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
   startingVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &114734649330082662
 MonoBehaviour:

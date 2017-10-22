@@ -67,7 +67,7 @@ public class Move : MonoBehaviour {
             Rotate(1);
         }
 
-        if (Input.GetKey(KeyCode.E) &&
+        if (Input.GetKey(KeyCode.Space) &&
             rammingCoolDown < 0 &&
             canvas.GetComponent<UIManager>().score >= 100)
         {

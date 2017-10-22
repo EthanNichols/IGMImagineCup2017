@@ -37,6 +37,11 @@ public class EnemyAI : MonoBehaviour
 
         speed += .5f * difficulty;
         rotationSpeed += .2f * difficulty;
+
+        if (Vector3.Distance(transform.position, player.transform.position) < 30)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame

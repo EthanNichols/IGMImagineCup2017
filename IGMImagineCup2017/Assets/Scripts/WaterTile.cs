@@ -19,7 +19,7 @@ public class WaterTile : MonoBehaviour {
         difficulty = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>().difficulty;
 
 
-        SpawnShips(Random.Range(1, 5 + difficulty));
+        SpawnShips(Random.Range(1, 5 + (int)(difficulty * .2f)));
 
         spawnTimer = Random.Range(3, 15);
         timerReset = spawnTimer;
@@ -31,7 +31,7 @@ public class WaterTile : MonoBehaviour {
 
         if (spawnTimer < 0)
         {
-            SpawnShips(Random.Range(1, 5 + difficulty));
+            SpawnShips(Random.Range(1, 5 + (int)(difficulty * .2f)));
             spawnTimer = timerReset;
         }
 	}
