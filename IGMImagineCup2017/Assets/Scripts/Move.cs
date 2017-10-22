@@ -18,6 +18,7 @@ public class Move : MonoBehaviour {
     private float resetCoolDown;
     public bool Ramming;
 
+    private int difficulty;
     private GameObject canvas;
 
 	// Use this for initialization
@@ -27,10 +28,25 @@ public class Move : MonoBehaviour {
         ramTime = 0;
 
         canvas = GameObject.FindGameObjectWithTag("Canvas");
+        difficulty = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>().difficulty;
 	}
+
+    private void ChangeDifficulty()
+    {
+        difficulty = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>().difficulty;
+
+        speed += .6f;
+        rotationSpeed += .1f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (difficulty != GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>().difficulty)
+        {
+            ChangeDifficulty();
+        }
+
         //Accelerate the boat when pressing forward, else decellerate the boat
         if (Input.GetKey(KeyCode.W))
         {
@@ -90,7 +106,7 @@ public class Move : MonoBehaviour {
 
         //Cap the max speed for the boat
         Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxSpeed);
-        canvas.GetComponent<UIManager>().score++;
+        canvas.GetComponent<UIManager>().AddScore(1);
     }
 
     private void Decellerate()

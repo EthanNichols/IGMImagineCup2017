@@ -19,9 +19,11 @@ public class EnemyAI : MonoBehaviour
     private float rotation;
     private Vector3 rotateDirection;
 
+    private int difficulty;
+    private GameObject canvas;
+
     private GameObject player;
     private Terrain terrain;
-    private GameObject canvas;
 
     // Use this for initialization
     void Start()
@@ -29,7 +31,12 @@ public class EnemyAI : MonoBehaviour
         //Set the player
         player = GameObject.FindGameObjectWithTag("Player");
         terrain = GameObject.FindGameObjectWithTag("Terrain").GetComponent<Terrain>();
+
         canvas = GameObject.FindGameObjectWithTag("Canvas");
+        difficulty = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIManager>().difficulty;
+
+        speed += .5f * difficulty;
+        rotationSpeed += .2f * difficulty;
     }
 
     // Update is called once per frame
@@ -105,7 +112,7 @@ public class EnemyAI : MonoBehaviour
         {
             Destroy(col.gameObject);
             Destroy(gameObject);
-            canvas.GetComponent<UIManager>().score += 10;
+            canvas.GetComponent<UIManager>().AddScore(10);
         }
 
         if (col.gameObject.tag == "Player")
@@ -113,7 +120,7 @@ public class EnemyAI : MonoBehaviour
             if (col.gameObject.GetComponent<Move>().Ramming)
             {
                 Destroy(gameObject);
-                canvas.GetComponent<UIManager>().score += 20;
+                canvas.GetComponent<UIManager>().AddScore(20);
             }
         }
     }
