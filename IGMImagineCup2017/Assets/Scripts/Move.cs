@@ -18,11 +18,15 @@ public class Move : MonoBehaviour {
     private float resetCoolDown;
     public bool Ramming;
 
+    private GameObject canvas;
+
 	// Use this for initialization
 	void Start () {
         resetCoolDown = rammingCoolDown;
         ramTimeReset = ramTime;
         ramTime = 0;
+
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
 	}
 	
 	// Update is called once per frame
@@ -48,12 +52,15 @@ public class Move : MonoBehaviour {
         }
 
         if (Input.GetKey(KeyCode.E) &&
-            rammingCoolDown < 0)
+            rammingCoolDown < 0 &&
+            canvas.GetComponent<UIManager>().score >= 100)
         {
             Ramming = true;
             rammingCoolDown = resetCoolDown;
             ramTime = ramTimeReset;
             StartRamming();
+
+            canvas.GetComponent<UIManager>().score -= 100;
         }
 
         if (ramTime > 0)
@@ -83,6 +90,7 @@ public class Move : MonoBehaviour {
 
         //Cap the max speed for the boat
         Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxSpeed);
+        canvas.GetComponent<UIManager>().score++;
     }
 
     private void Decellerate()
@@ -104,6 +112,17 @@ public class Move : MonoBehaviour {
         if (col.gameObject.tag == "Bullet")
         {
             Destroy(col.gameObject);
+        }
+
+        if (col.gameObject.tag == "Enemy" &&
+            !Ramming)
+        {
+            canvas.GetComponent<UIManager>().hits++;
+
+            foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Destroy(enemy);
+            }
         }
     }
 }

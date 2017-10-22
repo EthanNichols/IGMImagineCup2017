@@ -2,56 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
-
+public class Bullet : MonoBehaviour
+{
     //The speed of the bullet
     public int speed;
 
-    //The target the bullet was aimed at, and whether it will hit the target or not
-    public GameObject target;
-    public bool hitTarget;
-
     //The initial direction of the bullet
     public Vector3 direction;
+    public GameObject target;
 
     public Vector3 startingVelocity;
 
-	// Use this for initialization
-	void Start () {
-        //Move the bullet above the ship
-        transform.position += new Vector3(0, .5f, 0);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        if (target == null)
-        {
-            Destroy(gameObject);
-        }
-
-        //Move the bullet
-        Move();
-
-        //If the bullet goes below the water destroy the bullet
-        if (transform.position.y <= 0)
-        {
-            Destroy(gameObject);
-        }
+    // Use this for initialization
+    void Start()
+    {
+        transform.position += transform.forward * 3;
     }
 
-    public void Move()
+    // Update is called once per frame
+    void Update()
     {
-        //If the bullet will hit the target move the bullet towards the target
-        if (hitTarget)
+        if (target == null)
+        {
+            GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        } else
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        }
-        //If the bullet won't hit the target, just move the bullet in the right direction
-        else
-        {
-            transform.position += (startingVelocity + direction.normalized).normalized * speed * Time.deltaTime;
-            transform.position -= new Vector3(0, .01f, 0);
+
+            Vector3 curPos = new Vector3(transform.position.x, 0, transform.position.y);
+            Vector3 tarPos = new Vector3(target.transform.position.x, 0, target.transform.position.y);
+
+            transform.Rotate(Vector3.RotateTowards(curPos, tarPos, speed, speed));
         }
     }
 }
